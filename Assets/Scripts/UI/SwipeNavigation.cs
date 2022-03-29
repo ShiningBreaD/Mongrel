@@ -6,7 +6,7 @@ public class SwipeNavigation : MonoBehaviour
     [SerializeField] private float speedOfReturn;
 
     private Vector3 offset;
-    private Vector3 rootedPosition;
+    [SerializeField] private Vector3 rootedPosition;
     private bool isCardDragging = false;
 
     private void Start()
@@ -17,7 +17,7 @@ public class SwipeNavigation : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         rootedPosition = 
-            new Vector3(collision.transform.localPosition.x * -1, collision.transform.localPosition.y, collision.transform.localPosition.z);
+            new Vector3(collision.transform.localPosition.x * -1, rootedPosition.y, rootedPosition.z);
     }
 
     private void Update()
