@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5485808175618549042}
   - component: {fileID: 5038562805411363535}
   m_Layer: 5
-  m_Name: MainGameSlide
+  m_Name: Slide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

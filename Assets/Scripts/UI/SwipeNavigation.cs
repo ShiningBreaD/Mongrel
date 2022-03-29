@@ -6,7 +6,7 @@ public class SwipeNavigation : MonoBehaviour
     [SerializeField] private float speedOfReturn;
 
     private Vector3 offset;
-    [SerializeField] private Vector3 rootedPosition;
+    private Vector3 rootedPosition;
     private bool isCardDragging = false;
 
     private void Start()
