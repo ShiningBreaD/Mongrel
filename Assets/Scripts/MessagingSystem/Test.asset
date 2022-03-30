@@ -19,8 +19,10 @@ MonoBehaviour:
     - rty
   - name: Choice1
     messages:
-    - asd
-    - fgh
+    - text1
+    - text2
+    - text3
+    - text4
   - name: Choice2
     messages:
     - zxc

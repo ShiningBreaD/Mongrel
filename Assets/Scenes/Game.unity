@@ -270,13 +270,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &6892620179599533478
+--- !u!1001 &1146400797
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1406812967884578921, guid: f02b134060edfb045a13db11a8fdd1b9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658770169749164994, guid: f02b134060edfb045a13db11a8fdd1b9,
+        type: 3}
+      propertyPath: m_Name
+      value: ToShelter
+      objectReference: {fileID: 0}
     - target: {fileID: 6892620179996272208, guid: f02b134060edfb045a13db11a8fdd1b9,
         type: 3}
       propertyPath: m_Name
@@ -392,5 +402,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 9100229135792719422, guid: f02b134060edfb045a13db11a8fdd1b9,
+        type: 3}
+      propertyPath: m_Name
+      value: ToCatching
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f02b134060edfb045a13db11a8fdd1b9, type: 3}
