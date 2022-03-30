@@ -2,16 +2,16 @@
 
 public class ContentSwitcher : MonoBehaviour
 {
-    private Transform parent;
+    private Transform _parent;
 
     private void Start()
     {
-        parent = GetComponentInParent<Transform>();
+        _parent = GetComponentInParent<Transform>();
     }
 
     public void Open(GameObject content)
     {
-        Instantiate(content, parent);
+        Instantiate(content, _parent);
     }
 
     public void Close(GameObject content)

@@ -3,23 +3,19 @@ using TMPro;
 
 public class TextWalker : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI placeholder;
-    [SerializeField] private Messages messages;
-    private int index = -1;
+    [SerializeField] private TextMeshProUGUI _placeholder;
+    [SerializeField] private Messages _messages;
+    [SerializeField] private GameObject[] _choices;
 
-    public void NextMessage()
+    public void MakeChoice(int branchIndex)
     {
-        if (index == messages.Length - 1)
-            index = -1;
-
-        placeholder.text = messages[++index];
+        _placeholder.text = _messages.NextMessageIn(branchIndex);
+        DisableChoices();
     }
 
-    public void PreviousMessage()
+    private void DisableChoices()
     {
-        if (index <= 0)
-            index = messages.Length;
-
-        placeholder.text = messages[--index];
+        foreach (GameObject obj in _choices)
+            obj.SetActive(false);
     }
 }
