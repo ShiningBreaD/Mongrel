@@ -4,7 +4,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Slider))]
 public class TimingMinigame : MonoBehaviour
 {
+    private Animation _animation;
     private Slider _slider;
+
     private int _target;
     private float _speed;
     private bool _moving = true;
@@ -16,7 +18,8 @@ public class TimingMinigame : MonoBehaviour
     private void Start()
     {
         _slider = GetComponent<Slider>();
-        
+        _animation = GetComponent<Animation>();
+
         _slider.value = 0;
         _target = 1;
     }
@@ -28,6 +31,8 @@ public class TimingMinigame : MonoBehaviour
             Hit();
         else
             Miss();
+
+        _animation.Play("Hide&Destroy");
     }
 
     private void Hit()
@@ -68,5 +73,10 @@ public class TimingMinigame : MonoBehaviour
         if (handler.localPosition.x >= leftBorder && handler.localPosition.x <= rightBorder)
             return true;
         return false;
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
     }
 }

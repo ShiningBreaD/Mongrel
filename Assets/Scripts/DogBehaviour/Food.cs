@@ -4,14 +4,8 @@
 public class Food : MonoBehaviour
 {
     [SerializeField] private FoodAnnotation _data;
-    private Animation _animation;
 
     private Dog _touchedDog;
-
-    private void Start()
-    {
-        _animation = GetComponent<Animation>();
-    }
 
     private void OnMouseDown()
     {
@@ -28,7 +22,7 @@ public class Food : MonoBehaviour
     private void Feed()
     {
         _touchedDog.Feed(_data.Nourishmen);
-        _animation.Play();
+        Destroy();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

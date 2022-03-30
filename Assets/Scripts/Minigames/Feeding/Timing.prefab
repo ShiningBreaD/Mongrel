@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7425983631825108192}
   - component: {fileID: 3387527054382941283}
   - component: {fileID: 7149787747660066152}
+  - component: {fileID: 4338858419769056015}
   m_Layer: 5
   m_Name: Timing
   m_TagString: Untagged
@@ -130,6 +131,22 @@ MonoBehaviour:
   hit: {fileID: 3280353319330537116}
   reward: 10
   punishment: 12
+--- !u!111 &4338858419769056015
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3280353318591077645}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: a4b7c13f2a4eb764c84af2f4e42667e0, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: a4b7c13f2a4eb764c84af2f4e42667e0, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &3280353319077022701
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +291,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 60, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
