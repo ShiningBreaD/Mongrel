@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class FloatableObject : MonoBehaviour
 {
     [SerializeField] protected Transform navigationObject;

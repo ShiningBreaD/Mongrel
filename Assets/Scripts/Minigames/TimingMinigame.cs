@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
@@ -11,14 +12,19 @@ public class TimingMinigame : MonoBehaviour
     private float _speed;
     private bool _moving = true;
 
-    [SerializeField] private RectTransform hit;
-    [SerializeField] private int reward;
-    [SerializeField] private int punishment;
+    [SerializeField] private RectTransform _hit;
+    [SerializeField] private Bowl _bowl;
+    [SerializeField] private int _reward;
+    [SerializeField] private int _punishment;
+
+    [SerializeField] private GameObject _shelter;
+    [SerializeField] private ContentSwitcher _contentSwitcher;
 
     private void Start()
     {
         _slider = GetComponent<Slider>();
         _animation = GetComponent<Animation>();
+        _contentSwitcher = FindObjectOfType<ContentSwitcher>();
 
         _slider.value = 0;
         _target = 1;
@@ -34,15 +40,16 @@ public class TimingMinigame : MonoBehaviour
 
         _animation.Play("Hide&Destroy");
     }
-
     private void Hit()
     {
-        ShelterManagment.socialCredits += reward;
+        ShelterManagment.socialCredits += _reward;
+        _bowl.ChangeState(Bowl.State.fill);
     }
 
     private void Miss()
     {
-        ShelterManagment.socialCredits -= reward;
+        ShelterManagment.socialCredits -= _reward;
+        _bowl.ChangeState(Bowl.State.empty);
     }
 
     private void Update()
@@ -67,7 +74,7 @@ public class TimingMinigame : MonoBehaviour
     {
         RectTransform handler = _slider.handleRect;
 
-        float leftBorder = -(hit.rect.width / 2) + (handler.rect.width / 2);
+        float leftBorder = -(_hit.rect.width / 2) + (handler.rect.width / 2);
         float rightBorder = -leftBorder;
 
         if (handler.localPosition.x >= leftBorder && handler.localPosition.x <= rightBorder)
@@ -77,6 +84,7 @@ public class TimingMinigame : MonoBehaviour
 
     public void Destroy()
     {
-        Destroy(gameObject);
+        _contentSwitcher.OpenMC(_shelter);
+        _contentSwitcher.Close(GetComponentInParent<Image>().gameObject);
     }
 }

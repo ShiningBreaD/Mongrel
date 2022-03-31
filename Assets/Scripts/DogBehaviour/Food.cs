@@ -3,9 +3,16 @@
 [RequireComponent(typeof(FloatableObject))]
 public class Food : MonoBehaviour
 {
-    [SerializeField] private FoodAnnotation _data;
+    [SerializeField] public FoodAnnotation data;
+    [SerializeField] private bool _isFloatable = true;
 
     private Dog _touchedDog;
+
+    public void Start()
+    {
+        if (!_isFloatable)
+            GetComponent<FloatableObject>().enabled = false;
+    }
 
     private void OnMouseDown()
     {
@@ -21,7 +28,7 @@ public class Food : MonoBehaviour
 
     private void Feed()
     {
-        _touchedDog.Feed(_data.Nourishmen);
+        _touchedDog.Feed(data.Nourishmen);
         Destroy();
     }
 

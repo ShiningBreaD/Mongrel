@@ -3,6 +3,18 @@ using UnityEngine;
 
 public class Dog : MonoBehaviour
 {
+    public static Dog Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null)
+            Destroy(gameObject);
+        else if (Instance == null)
+            Instance = this;
+
+        DontDestroyOnLoad(gameObject);
+    }
+
     private bool _isSick;
     [SerializeField] private DiseaseAnnotation _disease;
     [SerializeField] [Range(0, 1)] private float _health;
@@ -22,7 +34,7 @@ public class Dog : MonoBehaviour
     [SerializeField] private bool _GenerateRandomly;
 
     private void Start()
-    {
+    {     
         if (_GenerateRandomly)
         {
             _health = Random.Range(0.1f, 0.8f);
