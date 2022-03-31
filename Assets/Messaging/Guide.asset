@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5dab0d360ffb249844212331a533b2, type: 3}
   m_Name: Guide
   m_EditorClassIdentifier: 
-  _branches: []
+  _branches:
+  - name: Branch0
+    messages:
+    - "\u0422\u0435\u043A\u0441\u0442"
+    - "\u041E\u0431\u0443\u0447\u0435\u043D\u0438\u044F"
+    - 1
+    - 2
+    - 3

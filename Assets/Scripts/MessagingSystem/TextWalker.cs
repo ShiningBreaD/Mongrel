@@ -10,7 +10,6 @@ public class TextWalker : MonoBehaviour
     public void MakeChoice(int branchIndex)
     {
         _placeholder.text = _messages.NextMessageIn(branchIndex);
-        DisableChoices();
     }
 
     private void DisableChoices()

@@ -60,9 +60,9 @@ public class Dog : MonoBehaviour
         CaringFrequency += 0.85f;
     }
 
-    public void Heal(float amount)
+    public void Heal()
     {
-        _health += amount;
+        _health += _disease.HealAmount;
         if (_health >= 1)
             _isSick = false;
 
