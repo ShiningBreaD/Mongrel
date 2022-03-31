@@ -15,11 +15,11 @@ public class Dog : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private bool _isSick;
+    [HideInInspector] public bool isSick;
     [SerializeField] private DiseaseAnnotation _disease;
-    [SerializeField] [Range(0, 1)] private float _health;
-    [SerializeField] [Range(0, 1)] private float _fastingLevel;
-    [SerializeField] [Range(0, 1)] private float _caringLevel;
+    [SerializeField] [Range(0, 1)] public float health;
+    [SerializeField] [Range(0, 1)] public float fastingLevel;
+    [SerializeField] [Range(0, 1)] public float caringLevel;
     [SerializeField] private float _caringThreshold;
 
     private float _caringFrequency;
@@ -37,16 +37,16 @@ public class Dog : MonoBehaviour
     {     
         if (_GenerateRandomly)
         {
-            _health = Random.Range(0.1f, 0.8f);
-            _fastingLevel = Random.Range(0.1f, 0.7f);
-            _caringLevel = Random.Range(0.1f, 0.4f);
+            health = Random.Range(0.1f, 0.8f);
+            fastingLevel = Random.Range(0.1f, 0.7f);
+            caringLevel = Random.Range(0.1f, 0.4f);
             
-            _isSick = _health - _fastingLevel > 0;
-            if (_isSick)
+            isSick = health - fastingLevel > 0;
+            if (isSick)
                 _disease = DiseasesList.GetRandomDisease();
         }
 
-        if (_isSick)
+        if (isSick)
             StartCoroutine(DiseaseSpreading(_disease));
 
         StartCoroutine(Fasting(0.5f));
@@ -55,55 +55,64 @@ public class Dog : MonoBehaviour
 
     public void Feed(float nourishmen)
     {
-        _fastingLevel += nourishmen;
+        fastingLevel += nourishmen;
 
-        CaringFrequency += 0.85f;
+        CaringFrequency += 10f;
     }
 
     public void Heal()
     {
-        _health += _disease.HealAmount;
-        if (_health >= 1)
-            _isSick = false;
+        health += _disease.HealAmount;
+        if (health >= 1)
+            isSick = false;
 
-        CaringFrequency += 0.85f;
+        CaringFrequency += 10f;
+    }
+
+    public void Heal(float amount)
+    {
+        health += amount;
+        if (health >= 1)
+            isSick = false;
+
+        CaringFrequency += 10f;
     }
 
     private IEnumerator DiseaseSpreading(DiseaseAnnotation disease)
     {
-        while (_isSick && _health > 0)
+        while (isSick && health > 0)
         {
             yield return new WaitForSeconds(3f);
-            _health = Mathf.Lerp(_health, 0, Time.deltaTime * disease.Heaviness);
+            health = Mathf.Lerp(health, 0, Time.deltaTime * disease.Heaviness);
 
             CaringFrequency -= 0.25f;
         }
 
-        if (_isSick && _health == 0)
+        if (isSick && health == 0)
             Death();
     }
 
     private IEnumerator Fasting(float speed)
     {
-        while (_fastingLevel > 0)
+        while (fastingLevel > 0)
         {
             yield return new WaitForSeconds(3f);
-            _fastingLevel = Mathf.Lerp(_fastingLevel, 0, Time.deltaTime * speed);
+            fastingLevel = Mathf.Lerp(fastingLevel, 0, Time.deltaTime * speed);
 
             CaringFrequency -= 0.25f;
         }
 
-        if (_fastingLevel == 0)
+        if (fastingLevel == 0)
             Death();
     }
 
     private IEnumerator FormCaringLevel(float speed)
     {
-        while (_caringLevel < 1)
+        while (caringLevel < 1)
         {
             yield return new WaitForSeconds(3f);
             int destination = CaringFrequency > _caringThreshold ? 1 : 0;
-            _caringLevel = Mathf.Lerp(_caringLevel, destination, Time.deltaTime * speed);
+            caringLevel = Mathf.Lerp(caringLevel, destination, Time.deltaTime * speed);
         }
     }
 

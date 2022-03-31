@@ -1,23 +1,27 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(FloatableObject))]
 public class Item : MonoBehaviour
 {
-    [SerializeField] private int amount;
-    
+    [SerializeField] private int _amount;
+    [SerializeField] private TextMeshProUGUI _amountText;
+    [SerializeField] private SickDog.State _state;
+
     private Button _button;
-    private Dog _touchedDog;
+    private SickDog _touchedDog;
 
 
     private void Start()
     {
         _button = GetComponent<Button>();
+        _amountText.text = "" + _amount;
     }
 
     private void Update()
     {
-        if (amount == 0)
+        if (_amount == 0)
         {
             _button.interactable = false;
         }
@@ -26,7 +30,7 @@ public class Item : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Dog"))
-            _touchedDog = collision.GetComponent<Dog>();
+            _touchedDog = collision.GetComponent<SickDog>();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -49,10 +53,11 @@ public class Item : MonoBehaviour
 
     private void Use()
     {
-        if (amount > 0)
+        if (_amount > 0)
         {
-            amount--;
-            _touchedDog.Heal();
+            _amount--;
+            _amountText.text = "" + _amount;
+            _touchedDog.ChangeState(_state);
         }
     }
 }
